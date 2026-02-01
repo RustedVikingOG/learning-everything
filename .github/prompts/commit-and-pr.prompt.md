@@ -1,170 +1,317 @@
-# Commit and Pull Request Workflow
+```prompt
+---
+description: Complete workflow to commit changes and create a PR with full metadata
+name: commit-and-pr
+---
+# Full Ship Workflow: Commit and Create PR
 
-When asked to commit changes and create a PR, follow this workflow:
+This prompt guides the complete workflow from uncommitted changes to a fully-configured PR.
 
-## 1. Create Feature Branch
+## Overview
+
+```
+ASSESS → BRANCH → ISSUE → COMMIT → PUSH → PR → FINALIZE → REPORT
+```
+
+---
+
+## Step 1: ASSESS - Understand the Changes
 
 ```bash
+git status
+git diff --stat
+```
+
+**Determine:**
+- What files changed? (count, types)
+- What's the scope? (single feature, multiple, fix, docs)
+- What should the branch be named?
+- Is there an existing issue this addresses?
+
+---
+
+## Step 2: BRANCH - Create Feature Branch from Main
+
+### If on a different branch with uncommitted changes:
+```bash
+git fetch origin
+git stash
+git checkout main
+git pull origin main
+git checkout -b <branch-type>/<descriptive-name>
+git stash pop
+```
+
+### If already on main or clean state:
+```bash
+git fetch origin
+git checkout main
+git pull origin main
 git checkout -b <branch-type>/<descriptive-name>
 ```
 
-Branch types:
-- `feat/` - New features or content
-- `fix/` - Bug fixes or corrections
-- `docs/` - Documentation only
-- `chore/` - Maintenance, tooling, config
+### Branch Naming
+| Type | Use When |
+|------|----------|
+| `feat/` | New features, content, capabilities |
+| `fix/` | Bug fixes, corrections |
+| `docs/` | Documentation only |
+| `chore/` | Config, tooling, maintenance |
+| `refactor/` | Restructuring without new features |
 
-## 2. Stage and Commit Files
+**Example:** `feat/capstone-driven-learning`
+
+---
+
+## Step 3: ISSUE - Find or Create Linked Issue
+
+### Search for existing issue:
+```bash
+gh issue list --label "enhancement" --state open
+gh issue list --label "documentation" --state open
+```
+
+### If matching issue exists:
+- Note the issue number for PR body
+- Use "Closes #N" or "Partially addresses #N"
+
+### If no matching issue and changes are substantial:
+Create one using `.github/prompts/create-issue.prompt.md`
+
+**For long issue bodies, use a file:**
+```bash
+# Write body to .tmp/issue-body.md first, then:
+gh issue create \
+  --title "[meta] <title>" \
+  --body-file .tmp/issue-body.md \
+  --label "enhancement" \
+  --assignee "RustedVikingOG"
+```
+
+---
+
+## Step 4: COMMIT - Logical Conventional Commits
 
 ### Commit Strategy
-- Group related files together (1-2 files per commit)
-- Order commits logically (infrastructure → content → docs)
-- Never include build artifacts (`bin/`, `obj/`, `node_modules/`)
+1. **Group by logical unit** - Don't commit unrelated files together
+2. **Order logically** - Infrastructure → content → docs → config
+3. **Never include** - `bin/`, `obj/`, `node_modules/`, `.tmp/`
 
 ### Conventional Commit Format
-
 ```
 <type>(<scope>): <description>
+
+# Examples:
+feat(learning): add capstone goals system
+feat(prompts): add archive-lesson workflow
+feat(agents): enhance teacher with milestone awareness
+docs(reports): add historical context section
+refactor(dotnet): reorganize folder structure
+chore: update gitignore
 ```
-
-**Types:**
-- `feat` - New feature or content
-- `fix` - Bug fix or correction
-- `docs` - Documentation changes
-- `chore` - Maintenance, config, tooling
-- `refactor` - Code restructuring
-- `test` - Adding or updating tests
-
-**Scope (optional):** Topic or area (e.g., `dotnet`, `csharp`, `agent`)
 
 **Rules:**
-- Use imperative mood: "add" not "added" or "adds"
-- Lowercase, no period at end
+- Imperative mood: "add" not "added"
+- Lowercase, no period
 - Max 72 characters
-- One-liners only (no body or footer)
-- **Do NOT use `--author` flag** - commits should appear as the user's work
+- **No `--author` flag**
 
-### Example Commits
-
+### Commit Commands
 ```bash
-git add .gitignore && git commit -m "chore: add .gitignore for build artifacts"
-git add src/Program.cs && git commit -m "feat(dotnet): add weather endpoint"
-git add README.md && git commit -m "docs: update getting started guide"
+# Single file or related files
+git add <files> && git commit -m "<type>(<scope>): <description>"
+
+# Multiple related changes with details
+git add <files> && git commit -m "<type>(<scope>): <summary>
+
+- Detail 1
+- Detail 2"
 ```
 
-## 3. Push Feature Branch
+---
+
+## Step 5: PUSH - Push to Origin
 
 ```bash
 git push -u origin <branch-name>
 ```
 
-## 4. Create Pull Request
+---
 
-Use GitHub CLI to create the PR:
+## Step 6: PR - Create Pull Request
 
-```bash
-gh pr create --title "<type>: <description>" --body "<body>"
-```
+### Always use body-file for complex PRs:
 
-### PR Title
-Follow conventional commit format for the title.
-
-### PR Body Template
-
-Craft the body using this structure:
-
+**Create `.tmp/pr-body.md`:**
 ```markdown
 ## Description
 
-<Brief 1-2 sentence summary of what this PR accomplishes>
+<1-2 sentence summary>
 
-## Type of Change
-
-- [x] <Check the appropriate type from the PR template>
-
-## Changes
-
-<Bulleted list of specific changes, grouped logically>
-
-### <Category 1>
-- Change 1
-- Change 2
-
-### <Category 2>
-- Change 3
-
-## Checklist
-
-- [x] Commits follow conventional commit format
-- [x] No sensitive information included
-- [x] Build artifacts excluded
-<Add other relevant checklist items from .github/pull_request_template.md>
-
-## Notes
-
-<Any additional context or areas needing attention>
-```
-
-### Example PR Creation
-
-```bash
-gh pr create \
-  --title "feat: add learning infrastructure and first dotnet lesson" \
-  --body "## Description
-
-Adds the complete learning infrastructure including teacher agent, templates, and first .NET Web API lesson.
+Closes #<issue-number>
 
 ## Type of Change
 
 - [x] 📚 Learning content (new lessons, exercises, projects)
-- [x] 📝 Documentation (README, reports, notes)
 - [x] 🤖 Agent/Prompt updates (teacher agent, prompts, templates)
+<check all that apply>
 
-## Changes
+## Learning Topic
 
-### Infrastructure
-- Added teacher agent for guided learning
-- Added templates for reports, lesson plans, progress tracking
-- Added prompt for report generation
+- [x] .NET / C#
 
-### .NET Learning Content
-- Scaffolded first Web API project
-- Added lesson 1 progress report
-- Created lesson 2 plan
+## What's Included
+
+### <Category 1>
+- Item 1
+- Item 2
+
+### <Category 2>
+- Item 3
 
 ## Checklist
 
-- [x] Commits follow conventional commit format
+- [x] Commit messages follow conventional commits
 - [x] No sensitive information included
-- [x] Build artifacts excluded via .gitignore"
+- [x] Build artifacts excluded
+<add relevant items from .github/pull_request_template.md>
+
+## Notes for Reviewer
+
+<Any context needed>
 ```
 
-## 5. Report to User
+### Create PR:
+```bash
+gh pr create \
+  --title "<type>: <description>" \
+  --body-file .tmp/pr-body.md \
+  --assignee "RustedVikingOG" \
+  --label "<labels>" \
+  --base main
+```
 
-After creating the PR, provide a summary:
+**Labels to use:**
+- `enhancement` - New features, improvements
+- `documentation` - Docs changes
+- `lesson` - Learning content
+- `dotnet` - .NET specific
+
+---
+
+## Step 7: FINALIZE - Add Project and Reviewer
+
+### Add to project:
+```bash
+gh pr edit <pr-number> --add-project "Learning Project"
+```
+
+**If this fails with scope error:**
+```bash
+gh auth refresh -s project
+# Then retry the command
+```
+
+### Add Copilot as reviewer (MUST use API):
+```bash
+gh api repos/RustedVikingOG/learning-dotnet-and-csharp/pulls/<pr-number>/requested_reviewers \
+  --method POST \
+  --field 'reviewers[]=Copilot'
+```
+
+**Note:** `gh pr edit --add-reviewer` does NOT work for bot accounts.
+
+---
+
+## Step 8: REPORT - Provide Summary
 
 ```markdown
-## PR Created ✅
+## ✅ Ship Complete
 
-**Branch:** `<branch-name>`
-**PR:** <link-to-pr>
+| Item | Details |
+|------|---------|
+| **Branch** | `<branch-name>` |
+| **Issue** | #N (created/linked) |
+| **PR** | #N - [Title](url) |
+| **Commits** | X commits |
+| **Assignee** | ✅ RustedVikingOG |
+| **Labels** | label1, label2 |
+| **Project** | ✅ Learning Project |
+| **Reviewer** | ✅ Copilot |
 
-### Commits (<count>)
-| Commit | Description |
-|--------|-------------|
-| `abc123` | feat: description |
-| `def456` | docs: description |
+### Commits
+1. `<sha>` <message>
+2. `<sha>` <message>
 
-### Next Steps
-- Review the PR at the link above
-- Merge when ready
-- Delete the feature branch after merge
+### Links
+- Issue: https://github.com/RustedVikingOG/learning-dotnet-and-csharp/issues/N
+- PR: https://github.com/RustedVikingOG/learning-dotnet-and-csharp/pull/N
 ```
 
-## Important Notes
+---
 
-1. **No `--author` flag** - All commits should be attributed to the repository owner
-2. **Check for existing branch** - Use `git branch -a` to verify branch doesn't exist
-3. **Verify clean state** - Run `git status` before and after to ensure all intended files are committed
-4. **PR template compliance** - Reference `.github/pull_request_template.md` when crafting the body
-5. **Link format** - The `gh pr create` command outputs the PR URL; include it in the final report
+## Edge Cases
+
+### Stash has conflicts
+```
+⚠️ Stash pop failed due to conflicts.
+Please resolve manually:
+1. Run `git stash show -p` to see stashed changes
+2. Resolve conflicts
+3. Run `git stash drop` when done
+```
+
+### Branch already exists
+```bash
+git branch -D <branch-name>  # Delete local
+git checkout -b <branch-name>
+```
+
+### PR body too long for command line
+Always use `--body-file .tmp/pr-body.md` for anything beyond trivial PRs.
+
+### Project permission error
+```bash
+gh auth refresh -s project
+# Then retry
+```
+
+### Need to verify Copilot was added
+```bash
+gh api repos/RustedVikingOG/learning-dotnet-and-csharp/pulls/<pr-number>/requested_reviewers
+```
+
+---
+
+## Quick Reference: Complete Example
+
+```bash
+# 1. Branch
+git fetch origin && git stash
+git checkout main && git pull origin main
+git checkout -b feat/my-feature
+git stash pop
+
+# 2. Commits
+git add .github/templates/ && git commit -m "feat(templates): add new template"
+git add .github/prompts/ && git commit -m "feat(prompts): add workflow prompt"
+git add learning/ && git commit -m "docs(learning): update lesson content"
+
+# 3. Push
+git push -u origin feat/my-feature
+
+# 4. Issue (if needed)
+gh issue create --title "[meta] Add feature X" --body-file .tmp/issue-body.md --label "enhancement" --assignee "RustedVikingOG"
+
+# 5. PR
+gh pr create --title "feat: add feature X" --body-file .tmp/pr-body.md --assignee "RustedVikingOG" --label "enhancement" --base main
+
+# 6. Finalize (assuming PR is #15)
+gh pr edit 15 --add-project "Learning Project"
+gh api repos/RustedVikingOG/learning-dotnet-and-csharp/pulls/15/requested_reviewers --method POST --field 'reviewers[]=Copilot'
+
+# 7. Verify
+gh pr view 15
+```
+
+```
