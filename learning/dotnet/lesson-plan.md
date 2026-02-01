@@ -1,7 +1,8 @@
-# .NET Lesson 2: Custom Endpoints & Route Parameters
+# .NET Lesson 02: Custom Endpoints & Route Parameters
 
 **Estimated Time:** 2-3 hours  
-**Prerequisites:** Completed Lesson 1 (Web API basics, `dotnet run`, endpoint testing)
+**Prerequisites:** Completed Lesson 1 (Web API basics, `dotnet run`, endpoint testing)  
+**Milestone:** 1 - REST API Foundation *(see [goals.md](goals.md))*
 
 ---
 
