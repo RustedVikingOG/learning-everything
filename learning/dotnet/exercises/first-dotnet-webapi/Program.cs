@@ -48,7 +48,9 @@ app.MapPost("/echo", (MessageRequest messageRequest) =>
 });
 
 // In-memory list to store items
+// Note: List<T> is not thread-safe. For production, use ConcurrentBag<T> or proper locking.
 var items = new List<Item>();
+var nextId = 1;
 
 app.MapGet("/items", () =>
 {
@@ -63,10 +65,9 @@ app.MapGet("/items/{id}", (int id) =>
 
 app.MapPost("/items", (ItemName itemName) =>
 {
-    var itemID = Guid.NewGuid().GetHashCode();
-    var newItem = new Item(itemID, itemName.Name);
+    var newItem = new Item(nextId++, itemName.Name);
     items.Add(newItem);
-    return $"new item created --> /items/{newItem.Id}";
+    return Results.Created($"/items/{newItem.Id}", newItem);
 });
 
 app.MapDelete("/items/{id}", (int id) =>

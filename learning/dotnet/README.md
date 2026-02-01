@@ -30,7 +30,8 @@
 - [x] Basic LINQ (`Enumerable.Range`, `.Select()`, `.ToArray()`)
 - [x] Minimal API routing (`MapGet`)
 - [x] Route parameters
-- [x] POST/PUT/DELETE endpoints
+- [x] POST/DELETE endpoints
+- [ ] PUT endpoints
 - [x] Request body handling
 - [x] Model binding (simple vs complex types)
 - [x] HTTP status codes (`Results.Ok()`, `Results.NotFound()`)
