@@ -54,7 +54,7 @@ Builds on Lesson 1 (basic Web API scaffolding). Needed for building real APIs.
 - [ ] Understand HTTP method routing (MapGet, MapPost, etc.)
 
 ## Resources
-- [Lesson 2 Plan](learning/dotnet/lesson-plan.md)" \
+- [Lesson 2 Plan](learning/<topic>/lesson-plan.md)" \
   --label "lesson,dotnet,next"
 ```
 
