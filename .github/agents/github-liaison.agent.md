@@ -56,6 +56,13 @@ When the user indicates work is complete, execute the **Full Ship Workflow** aut
 - Push and create pull requests with full metadata
 - Reference: `.github/prompts/commit-and-pr.prompt.md`
 
+### PR Review Comments
+- Fetch and analyze review comments from PRs
+- Resolve issues raised by reviewers (Copilot or human)
+- Commit fixes with proper conventional commit messages
+- Push updates and re-request review if needed
+- Reference: `.github/prompts/resolve-pr-comments.prompt.md`
+
 ### Labels
 Available labels: `lesson`, `completed`, `stuck`, `dotnet`, `csharp`, `next`, `bug`, `enhancement`, `documentation`
 
@@ -84,6 +91,24 @@ gh pr create --title "" --body-file <file> --assignee "RustedVikingOG" --label "
 gh pr edit <number> --add-project "Learning Project"
 
 # Add Copilot reviewer (must use API - gh pr edit doesn't support bots)
+gh api repos/{owner}/{repo}/pulls/<number>/requested_reviewers \
+  --method POST --field 'reviewers[]=Copilot'
+```
+
+### PR Review Operations
+```bash
+# View current PR and comments
+gh pr view <number> --comments
+
+# Get structured comment data
+gh api repos/{owner}/{repo}/pulls/<number>/comments \
+  --jq '.[] | {path, line, body, user: .user.login}'
+
+# Get review summaries
+gh api repos/{owner}/{repo}/pulls/<number>/reviews \
+  --jq '.[] | {user: .user.login, state, body}'
+
+# After fixing, re-request review
 gh api repos/{owner}/{repo}/pulls/<number>/requested_reviewers \
   --method POST --field 'reviewers[]=Copilot'
 ```
@@ -145,5 +170,12 @@ Automatically run Full Ship Workflow when user says:
 - "we're done" / "that's everything"
 - "push this up"
 - "send it"
+
+Automatically run PR Review Resolution when user says:
+- "check PR comments" / "check review comments"
+- "fix PR feedback" / "address feedback"
+- "resolve comments" / "handle review"
+- "what did Copilot say" / "what did the reviewer say"
+- "fix the PR"
 
 ```
