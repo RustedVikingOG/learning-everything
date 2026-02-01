@@ -1,7 +1,8 @@
-# [Topic] Lesson [N]: [Title]
+# [Topic] Lesson [NN]: [Title]
 
 **Estimated Time:** [X hours]  
-**Prerequisites:** [What student should have completed/reviewed]
+**Prerequisites:** [What student should have completed/reviewed]  
+**Milestone:** [N] - [Milestone Name] *(from goals.md)*
 
 ---
 

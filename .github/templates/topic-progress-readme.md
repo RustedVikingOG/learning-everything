@@ -38,10 +38,12 @@
 
 ## Lessons Completed
 
-| Lesson | Date | Report |
-|--------|------|--------|
-| [Lesson 1 Title] | [YYYY-MM-DD] | [Link to report] |
-| [Lesson 2 Title] | [YYYY-MM-DD] | [Link to report] |
+| # | Title | Date | Milestone | Report |
+|---|-------|------|-----------|--------|
+| 01 | [Title] | YYYY-MM-DD | M1 | [Report](link) |
+| 02 | [Title] | YYYY-MM-DD | M1 | [Report](link) |
+
+*Full lesson archive with details: [lessons/README.md](lessons/README.md)*
 
 ---
 
