@@ -29,14 +29,25 @@ Each topic has a **capstone project** that lessons build toward, creating purpos
 
 ## 🚀 Current Topics
 
+### Progress Legend
+
+| Emoji | Meaning |
+|-------|---------|
+| 🌒 | **Not Started** - On the roadmap |
+| 🌱 | **Beginner** - Just getting started |
+| 🌿 | **Growing** - Building understanding |
+| 🌳 | **Intermediate** - Comfortable with basics |
+| 🌲 | **Advanced** - Deep knowledge |
+| ✨ | **Mastered** - Ready to teach others |
+
 ### .NET / C#
 
 | Status | Area | Description |
 |--------|------|-------------|
 | 🌱 | Web API Basics | Scaffolding, routing, minimal API pattern |
-| ⏳ | Route Parameters | Custom endpoints, HTTP methods |
-| ⏳ | LINQ | Language Integrated Query in depth |
-| ⏳ | Dependency Injection | Builder pattern, services |
+| 🌒 | Route Parameters | Custom endpoints, HTTP methods |
+| 🌒 | LINQ | Language Integrated Query in depth |
+| 🌒 | Dependency Injection | Builder pattern, services |
 
 **[View .NET Progress →](learning/dotnet/README.md)**
 
