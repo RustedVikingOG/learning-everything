@@ -128,14 +128,14 @@ A real-time chat application that demonstrates full-stack .NET development. By c
 ## Progress Summary
 
 ```
-Milestone 1: ████░░░░░░ 40%
+Milestone 1: ███░░░░░░░ 29%
 Milestone 2: ░░░░░░░░░░  0%
 Milestone 3: ░░░░░░░░░░  0%
 Milestone 4: ░░░░░░░░░░  0%
 Milestone 5: ░░░░░░░░░░  0%
 Milestone 6: ░░░░░░░░░░  0%
 ─────────────────────────
-Overall:     ██░░░░░░░░  7%
+Overall:     █░░░░░░░░░  5%
 ```
 
 ---

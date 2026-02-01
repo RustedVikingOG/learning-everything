@@ -55,7 +55,7 @@ Archive the current lesson plan to the lessons folder with proper numbering.
 
 4. **Update the README lesson index:**
    - Add row to the "Lessons Completed" table in `learning/[topic]/README.md`
-   - Format: `| [NN] | [Title] | [Date] | [Report Link] |`
+   - Format: `| [NN] | [Title] | [Date] | [Milestone] | [Report Link] |`
 
 5. **Update goals.md:**
    - Mark any completed skills in the current milestone
@@ -70,5 +70,5 @@ If archiving a lesson about "Routes and Parameters" as lesson 02:
 
 **README update:**
 ```markdown
-| 02 | Routes & Parameters | 2026-02-01 | [Report](../../reports/dotnet/20260201-report.md) |
+| 02 | Routes & Parameters | 2026-02-01 | M1 | [Report](../../reports/dotnet/20260201-report.md) |
 ```
