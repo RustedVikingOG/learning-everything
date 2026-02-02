@@ -22,7 +22,7 @@ When the user indicates work is complete, execute the **Full Ship Workflow** aut
 4. COMMIT    → Logical, conventional commits
 5. PUSH      → Push to origin
 6. PR        → Create with full body, labels, assignee
-7. FINALIZE  → Add project, add Copilot reviewer
+7. FINALIZE  → Add project
 8. REPORT    → Summary with all links
 ```
 
@@ -39,7 +39,7 @@ When the user indicates work is complete, execute the **Full Ship Workflow** aut
 | **PR labels** | Infer from file types (`.md` → documentation, agent → enhancement) |
 | **Assignee** | Always assign to repository owner (RustedVikingOG) |
 | **Project** | Always add to "Learning Project" |
-| **Reviewer** | Always request Copilot via API |
+| **Reviewer** | Leave empty |
 
 ## Capabilities
 
@@ -58,7 +58,7 @@ When the user indicates work is complete, execute the **Full Ship Workflow** aut
 
 ### PR Review Comments
 - Fetch and analyze review comments from PRs
-- Resolve issues raised by reviewers (Copilot or human)
+- Resolve issues raised by reviewers (human or bot)
 - Commit fixes with proper conventional commit messages
 - Push updates and re-request review if needed
 - Reference: `.github/prompts/resolve-pr-comments.prompt.md`
@@ -89,10 +89,6 @@ gh issue view <number>
 ```bash
 gh pr create --title "" --body-file <file> --assignee "RustedVikingOG" --label "" --base main
 gh pr edit <number> --add-project "Learning Project"
-
-# Add Copilot reviewer (must use API - gh pr edit doesn't support bots)
-gh api repos/{owner}/{repo}/pulls/<number>/requested_reviewers \
-  --method POST --field 'reviewers[]=Copilot'
 ```
 
 ### PR Review Operations
@@ -107,10 +103,6 @@ gh api repos/{owner}/{repo}/pulls/<number>/comments \
 # Get review summaries
 gh api repos/{owner}/{repo}/pulls/<number>/reviews \
   --jq '.[] | {user: .user.login, state, body}'
-
-# After fixing, re-request review
-gh api repos/{owner}/{repo}/pulls/<number>/requested_reviewers \
-  --method POST --field 'reviewers[]=Copilot'
 ```
 
 ### Conventional Commits
@@ -129,7 +121,6 @@ Format: `<type>(<scope>): <description>`
 | Existing issue matches | Link to it instead of creating duplicate |
 | Long PR body | Write to `.tmp/pr-body.md`, use `--body-file` |
 | Long issue body | Write to `.tmp/issue-body.md`, use `--body-file` |
-| Adding Copilot reviewer | Use `gh api` (not `gh pr edit --add-reviewer`) |
 | Adding project fails | May need `gh auth refresh -s project`, inform user |
 | Files deleted + recreated | Git tracks as rename if content similar; commit together |
 | Merge conflicts in stash | Inform user, don't proceed blindly |
@@ -150,7 +141,6 @@ Always end with a comprehensive summary:
 | **Assignee** | ✅ RustedVikingOG |
 | **Labels** | enhancement, documentation |
 | **Project** | ✅ Learning Project |
-| **Reviewer** | ✅ Copilot |
 
 ### Commits
 1. `abc1234` feat(scope): description
@@ -175,5 +165,5 @@ Automatically run PR Review Resolution when user says:
 - "check PR comments" / "check review comments"
 - "fix PR feedback" / "address feedback"
 - "resolve comments" / "handle review"
-- "what did Copilot say" / "what did the reviewer say"
+- "what did the reviewer say"
 - "fix the PR"
