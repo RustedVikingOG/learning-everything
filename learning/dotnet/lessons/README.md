@@ -10,6 +10,7 @@ Archived lesson plans from completed sessions. Each lesson builds toward the [We
 |---|-------|------|-----------|--------|
 | 01 | [Web API Basics](lesson-01-web-api-basics.md) | 2026-01-31 | M1 | [Report](../../../reports/dotnet/20260131-report.md) |
 | 02 | [Custom Endpoints & Route Parameters](lesson-02-custom-endpoints.md) | 2026-02-01 | M1 | [Report](../../../reports/dotnet/20260201-report.md) |
+| 03 | [Input Validation & Error Handling](lesson-03-input-validation-error-handling.md) | 2026-02-02 | M1 | [Report](../../../reports/dotnet/20260202-report.md) |
 
 ---
 
