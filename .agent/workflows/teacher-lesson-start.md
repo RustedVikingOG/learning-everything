@@ -28,6 +28,7 @@ Run this when the user says "Let's learn", "Start lesson", or similar.
 ### 3. Explain the Plan
 **ACTION:**
 - Output the current Lesson Plan objectives.
+- Share the links from the **External Resources** section of the lesson plan so the student can open them.
 - Explain **WHY** we are learning this (connect to the Milestone/Capstone).
 
 ### 4. Begin Objective 1
