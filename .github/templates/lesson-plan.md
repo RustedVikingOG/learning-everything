@@ -43,7 +43,17 @@
 
 ---
 
-## Resources (Optional)
+## 📖 External Resources (Mandatory)
 
-- [Link to relevant documentation]
-- [Link to helpful tutorial]
+- [Read: Official Doc Link]
+- [Read: Concept Overview Link]
+
+---
+
+## 💡 Analogous Examples
+
+*(Do not put direct solution code here. Put disconnected, analogous examples of the same concept.)*
+
+```csharp
+// Example using completely different domain models (e.g. Cars, Books) that shows the concept working.
+```

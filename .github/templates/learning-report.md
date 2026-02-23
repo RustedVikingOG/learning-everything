@@ -111,10 +111,10 @@ The student effectively leveraged experience with:
 
 ### Understanding Level
 
-| Objective | Status | Notes |
-|-----------|--------|-------|
-| [Objective 1] | ✅ Strong / ⚠️ Partial / ❌ Needs Work | [Details] |
-| [Objective 2] | ✅ Strong / ⚠️ Partial / ❌ Needs Work | [Details] |
+| Objective | Status | Interaction Count (Struggle Proxy) | Notes |
+|-----------|--------|------------------------------------|-------|
+| [Objective 1] | ✅ Strong / ⚠️ Partial / ❌ Needs Work | [X] evaluations needed | [Details] |
+| [Objective 2] | ✅ Strong / ⚠️ Partial / ❌ Needs Work | [X] evaluations needed | [Details] |
 
 ### Concerns (if any)
 
