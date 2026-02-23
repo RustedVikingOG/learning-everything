@@ -13,6 +13,7 @@ Update this file at the end of every lesson (via `teacher-lesson-end` workflow).
 ## Fields to Maintain
 
 ### 1. Current Level
+*(Requirement: Require specific, concrete evidence of knowledge application and mastery before updating the user's level. Emphasize honest assessment.)*
 - **Beginner (🌱):** Just starting, first milestone.
 - **Intermediate (🌿):** Completed at least one capstone.
 - **Advanced (🌳):** Multiple milestones, complex topics.
