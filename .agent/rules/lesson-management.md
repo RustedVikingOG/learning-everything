@@ -21,11 +21,12 @@ When a lesson is finished and reported on:
 ### content Requirements
 1.  **Alignment:** MUST align with `learning/[topic]/goals.md` (Current Milestone).
 2.  **Continuity:** MUST address "Recommended Next Steps" from the previous `learning-report.md`.
-3.  **Format:**
-    - **Max 50 lines.**
-    - Clear objectives (checkboxes).
-    - Necessary prerequisites.
-    - Estimated time.
+3.  **Format:** Use the template at `.github/templates/lesson-plan.md`.
+    - **Objectives:** Clear checkboxes.
+    - **External Resources:** Mandatory section with relevant documentation links.
+    - **Analogous Examples:** Provide unconnected examples of the concept, not the solution code itself.
+    - **Exercises:** Should be challenging and require productive struggle.
+    - Necessary prerequisites and estimated time.
 
 ### Updating the File
 Overwrite `learning/[topic]/lesson-plan.md` with the new plan.

@@ -22,4 +22,4 @@ The report MUST include:
 5.  **Recommended Next Steps:** What should the next lesson cover?
 
 > [!IMPORTANT]
-> Be honest. If the user struggled, document it. This informs the next lesson plan.
+> Be honest and strictly objective. Do NOT check off an objective unless absolute mastery was demonstrated. If the user struggled, document it. Use the number of times the student asked for help or evaluations ("AI session interaction count") as a positive indicator of "Productive Struggle". This informs the next lesson plan.
