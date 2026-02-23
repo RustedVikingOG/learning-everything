@@ -13,6 +13,7 @@ This workflow guides the process of wrapping up a learning session, updating pro
 - Generate a report based on the session.
 - Save to `reports/[topic]/[YYYYMMDD]-report.md`.
 - Use the prompt: `.github/prompts/generate-learning-report.prompt.md` (if available/convertible) or just generate a comprehensive markdown report.
+- **Constraint:** Follow `.agent/rules/learning-report.md`. Be strictly objective; do not advance objectives without clear evidence of mastery.
 
 ### 2. Update Progress Tracker
 **ACTION REQUIRED:**

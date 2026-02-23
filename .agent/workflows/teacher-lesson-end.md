@@ -12,7 +12,7 @@ Run this when the user says "I'm done", "Lesson complete", or similar.
 **ACTION:**
 - Create `reports/[topic]/[YYYYMMDD]-report.md`.
 - Follow rule: `.agent/rules/learning-report.md`.
-- **Constraint:** Be detailed and honest about progress.
+- **Constraint:** Be strictly objective and honest about progress. Do not advance objectives unless absolute mastery is shown.
 
 ### 2. Archive Lesson Plan
 **ACTION:**
