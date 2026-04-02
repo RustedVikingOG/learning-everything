@@ -1,5 +1,6 @@
 # other
 downloads/
+*.egg-info
 
 # .NET build outputs
 bin/

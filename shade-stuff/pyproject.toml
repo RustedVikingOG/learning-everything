@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shade-stuff"
+version = "0.1.0"
+description = "Data analysis utilities"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas",
+    "openpyxl",
+    "matplotlib"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "ruff>=0.1",
+]
